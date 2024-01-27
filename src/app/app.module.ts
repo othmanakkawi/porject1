@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';  // Import both FormsModule and ReactiveFormsModule
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -19,6 +19,10 @@ import { ToastrModule } from 'ngx-toastr';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { TodolistComponent } from './todolist/todolist.component';
 import { AdminComponent } from './admin/admin.component';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -29,14 +33,23 @@ import { AdminComponent } from './admin/admin.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateloader, // Corrected the function name
+        deps: [HttpClient]
+      }
+    }),
     MatExpansionModule,
-    FormsModule,  // Include FormsModule for template-driven forms
-    ReactiveFormsModule,  // Include ReactiveFormsModule for reactive forms
+    FormsModule,
+    ReactiveFormsModule,
     ColorPickerModule,
-    ToastrModule,
     ToastrModule.forRoot({
-      positionClass: 'toast-top-center'}),
+      positionClass: 'toast-top-center'
+    }),
     MatListModule,
+    MatTooltipModule,
     MatSidenavModule,
     AppRoutingModule,
     MatMenuModule,
@@ -49,8 +62,12 @@ import { AdminComponent } from './admin/admin.component';
     BrowserAnimationsModule
   ],
   providers: [
-    provideClientHydration()
+    // No need for provideClientHydration() in this context
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function httpTranslateloader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
