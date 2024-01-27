@@ -1,0 +1,28 @@
+.toolbar-item-spacer {
+    flex: 1 1 auto;
+  }
+  
+  .app-container {
+    height: 100vh; /* Adjust as needed for your layout */
+    margin: 0;
+  }
+  
+  .app-sidenav {
+    width: 230px; /* Adjust as needed */
+  }
+  
+  .app-sidenav-content {
+    display: flex;
+    height: calc(100vh - 64px); /* Adjust based on your toolbar height */
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Add the following styles to center the content within the sidenav content */
+  .mat-sidenav-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  

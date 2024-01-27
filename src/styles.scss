@@ -1,1 +1,32 @@
-/* You can add global styles to this file, and also import other style files */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Roboto', "Helvetica Neue", sans-serif;
+}
+
+/* Custom styles for ngx-toastr */
+
+.toast-success, 
+.toast-error {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  max-width: 500px; /* Adjust the maximum width as needed */
+  margin: 20px auto;
+  z-index: 10000; /* Make sure it's on top of other elements */
+  border-radius: 5px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 16px;
+  color: #fff; /* Text color */
+}
+
+.toast-success {
+  background-color: #28a745; /* Green background for success toasts */
+}
+
+.toast-error {
+  background-color: #dc3545; /* Red background for error toasts */
+}
+
+/* Add more custom styling as needed */
